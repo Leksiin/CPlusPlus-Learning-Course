@@ -1,5 +1,4 @@
 #include <iostream>
-#include <locale>
 #include <Windows.h>
 #include <cmath>
 using namespace std;
@@ -203,29 +202,216 @@ using namespace std;
 //		break;
 //	}
 //}
+//
+//int main()
+//{
+//	SetConsoleCP(1251);
+//	SetConsoleOutputCP(1251);
+//	
+//	int n;
+//	cout << "Введите номер месяца: ";
+//	cin >> n;
+//	switch (n)
+//	{
+//	case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+//		cout << "\nЧисло дней: 31\n";
+//		break;
+//	case 4: case 6: case 9: case 11:
+//		cout << "\nЧисло дней: 30\n";
+//		break;
+//	case 2:
+//		cout << "\nЧило дней: 28 (в високостный год - 29)\n";
+//		break;
+//
+//	default:
+//		cout << "\nТакого месяца не существует!\n";
+//		break;
+//	}
+//}
+
+//int main()
+//{
+//	SetConsoleCP(1251);
+//	SetConsoleOutputCP(1251);
+//	int a, b, max, age;
+//	cin >> a >> b >> age;
+//	max = (a > b) ? a : b; // (условие) ? значение если TRUE : значение если FALSE
+//	cout << max << endl;
+//	// auto v = (a > 0) ? 42 : "gfdgdfg"; ошибка т.к. разные типы данных
+//	string s = (a > 0) ? "+" : (a == 0) ? "ноль" : "минус";
+//	cout << s << endl;
+//	cout << "Есть ли 18? : " << (age >= 18 ? "да" : "нет");
+//}
+
+//int main()
+//{
+//	SetConsoleCP(1251);
+//	SetConsoleOutputCP(1251);
+//	int x;
+//	cout << "1. Введите число: ";
+//	cin >> x;
+//	cout << (x % 2 == 0 ? "Четное число\n\n" : "Нечетное число\n\n");
+//
+//	int c, d;
+//	cout << "2. Введите первое число: ";
+//	cin >> c;
+//	cout << "Введите второе число: ";
+//	cin >> d;
+//
+//	cout << "Наименьшее число: " << (c < d ? c : d);
+//
+//	int a, b;
+//	cout << "\n\n3. Введите b: ";
+//	cin >> b;
+//	cout << "Введите a: ";
+//	cin >> a;
+//	cout << "b = " << (a > 0 ? a : b);
+//}
 
 int main()
 {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	
-	int n;
-	cout << "Введите номер месяца: ";
-	cin >> n;
-	switch (n)
+
+	int year;
+	cout << "1. Введите год: ";
+	cin >> year;
+	if (year % 4 == 0 || year % 400 == 0)
 	{
-	case 1: case 3: case 5: case 7: case 8: case 10: case 12:
-		cout << "\nЧисло дней: 31\n";
-		break;
-	case 4: case 6: case 9: case 11:
-		cout << "\nЧисло дней: 30\n";
+		cout << "Год является високосным";
+	}
+	else
+		cout << "Год не является високосным";
+
+	int sum;
+	cout << "\n\n2. Введите сумму покупки: ";
+	cin >> sum;
+	if (sum < 1000)
+	{
+		cout << "Вы получаете к сумме покупки скидку 5%!";
+	}
+	else if (sum < 5000)
+	{
+		cout << "Вы получаете к сумме покупки скиду 10%!";
+	}
+	else if (sum < 100000)
+	{
+		cout << "Вы получаете к сумме покупки скидку 25%!";
+	}
+
+	int bank;
+	int balance = 65000;
+	int plusmoney;
+	int minusmoney;
+	cout << "\n\n1 - Внести средства\n2 - Вывести средства\n3 - Информация о балансе\n\nВведите действие(1-3): ";
+	cin >> bank;
+	switch (bank)
+	{
+	case 1:
+		cout << "Введите вносимую сумму: ";
+		cin >> plusmoney;
+		balance = balance + plusmoney;
+		cout << "Внесенная сумма: " << plusmoney << " руб. | Текущий баланс: " << balance;
 		break;
 	case 2:
-		cout << "\nЧило дней: 28 (в високостный год - 29)\n";
+		cout << "Введите сумму, которую нужно вывести: ";
+		cin >> minusmoney;
+		if (minusmoney > balance)
+		{
+			cout << "ОШИБКА: Недостаточно средств";
+		}
+		else
+		{
+			balance = balance - minusmoney;
+			cout << "Выведенная сумма: " << minusmoney << " руб. | Текущий баланс: " << balance;
+		}
 		break;
-
+	case 3:
+		cout << "Текущий баланс: " << balance << " руб.";
+		break;
 	default:
-		cout << "\nТакого месяца не существует!\n";
+		cout << "ОШИБКА: Неверное действие";
+	}
+
+	int computer = 50000;
+	int monitor = 15000;
+	int keyboard = 4000;
+	int mouse = 1500;
+	int headphones = 8000;
+
+	int shop;
+	cout << "\n\nТОВАРЫ:\n1. Компьютер - 50 000 руб.\n2. Монитор - 15 000 руб.\n3. Клавиатура - 4 000 руб.\n4. Компьютерная мышь - 1 500 руб.\n5. Наушники - 8 000 руб.\n 6 - Купить всё\n\n Введите номер товара, который хотите купить: ";
+	cin >> shop;
+	switch (shop)
+	{
+	case 1:
+		if (balance > computer)
+		{
+			balance = balance - computer;
+			cout << "Спасибо за покупку! Ваш текущий баланс: " << balance << " руб.\n";
+		}
+		else
+		{
+			cout << "ОШИБКА: Недостаточно средств\n";
+		}
+		break;
+	case 2:
+		if (balance > monitor)
+		{
+			balance = balance - monitor;
+			cout << "Спасибо за покупку! Ваш текущий баланс: " << balance << " руб.\n";
+		}
+		else
+		{
+			cout << "ОШИБКА: Недостаточно средств\n";
+		}
+		break;
+	case 3:
+		if (balance > keyboard)
+		{
+			balance = balance - keyboard;
+			cout << "Спасибо за покупку! Ваш текущий баланс: " << balance << " руб.\n";
+		}
+		else
+		{
+			cout << "ОШИБКА: Недостаточно средств\n";
+		}
+		break;
+	case 4:
+		if (balance > mouse)
+		{
+			balance = balance - mouse;
+			cout << "Спасибо за покупку! Ваш текущий баланс: " << balance << " руб.\n";
+		}
+		else
+		{
+			cout << "ОШИБКА: Недостаточно средств\n";
+		}
+		break;
+	case 5:
+		if (balance > headphones)
+		{
+			balance = balance - headphones;
+			cout << "Спасибо за покупку! Ваш текущий баланс: " << balance << " руб.\n";
+		}
+		else
+		{
+			cout << "ОШИБКА: Недостаточно средств\n";
+		}
+		break;
+	case 6:
+		if (balance > (computer + monitor + keyboard + mouse + headphones))
+		{
+			balance = balance - (computer + monitor + keyboard + mouse + headphones);
+			cout << "Спасибо за покупку! Ваш текущий баланс: " << balance << " руб.\n";
+		}
+		else
+		{
+			cout << "ОШИБКА: Недостаточно средств\n";
+		}
+		break;
+	default:
+		cout << "\nОШИБКА: Такого товара нет!\n";
 		break;
 	}
 }
